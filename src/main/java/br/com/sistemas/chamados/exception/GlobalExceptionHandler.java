@@ -9,6 +9,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -34,6 +35,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErroResposta> jsonInvalido(HttpMessageNotReadableException ex) {
         return montar(HttpStatus.BAD_REQUEST, "JSON inválido ou mal formatado", List.of());
+    }
+
+    /** Ex.: GET /chamados?status=XYZ ou /chamados/abc */
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErroResposta> parametroInvalido(MethodArgumentTypeMismatchException ex) {
+        return montar(HttpStatus.BAD_REQUEST, "Parâmetro inválido",
+            List.of(ex.getName() + ": valor '" + ex.getValue() + "' não é aceito"));
     }
 
     private ResponseEntity<ErroResposta> montar(
