@@ -24,12 +24,14 @@
         <nav aria-label="Principal">
             <ul class="menu-lista">
                 <li><a class="menu-item" href="#/" data-rota="painel">Painel</a></li>
+                <li><a class="menu-item" href="#/chamados" data-rota="chamados">Chamados</a></li>
                 <li><a class="menu-item" href="#/clientes" data-rota="clientes">Clientes</a></li>
-                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Categorias <small>em breve</small></span></li>
-                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Técnicos <small>em breve</small></span></li>
-                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Chamados <small>em breve</small></span></li>
+                <li><a class="menu-item" href="#/categorias" data-rota="categorias">Categorias</a></li>
+                <li><a class="menu-item" href="#/tecnicos" data-rota="tecnicos">Técnicos</a></li>
             </ul>
         </nav>
+
+        <a class="botao sinal menu-acao" href="#/chamados/novo">Abrir chamado</a>
 
         <p class="api-status" id="api-status" data-estado="verificando">
             <span class="api-luz" aria-hidden="true"></span>
@@ -42,18 +44,18 @@
 </div>
 
 <!-- Confirmação de exclusão -->
-<dialog class="dialogo" id="dialogo-excluir" aria-labelledby="dialogo-titulo">
+<dialog class="dialogo" id="dialogo-confirmar" aria-labelledby="dialogo-titulo">
     <form method="dialog">
-        <h2 id="dialogo-titulo">Excluir cliente?</h2>
+        <h2 id="dialogo-titulo">Excluir?</h2>
         <p id="dialogo-texto"></p>
         <div class="acoes">
             <button class="botao" value="cancelar">Cancelar</button>
-            <button class="botao perigo" value="confirmar">Excluir cliente</button>
+            <button class="botao perigo" value="confirmar" id="dialogo-botao">Excluir</button>
         </div>
     </form>
 </dialog>
 
-<!-- Avisos rápidos (salvo, excluído, erro de conexão) -->
+<!-- Avisos rápidos (salvo, excluído, erro) -->
 <div class="avisos" id="avisos" role="status" aria-live="polite"></div>
 
 <script src="/js/app.js" th:src="@{/js/app.js}"></script>
