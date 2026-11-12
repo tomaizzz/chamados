@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Chamados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&amp;display=swap">
+    <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Navegação principal (segue o mapa de telas do projeto) -->
+    <header class="menu">
+        <a class="marca" href="#/">
+            <span class="marca-icone" aria-hidden="true"></span>
+            <span>Chamados</span>
+        </a>
+
+        <nav aria-label="Principal">
+            <ul class="menu-lista">
+                <li><a class="menu-item" href="#/" data-rota="painel">Painel</a></li>
+                <li><a class="menu-item" href="#/clientes" data-rota="clientes">Clientes</a></li>
+                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Categorias <small>em breve</small></span></li>
+                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Técnicos <small>em breve</small></span></li>
+                <li><span class="menu-item desabilitado" title="Disponível em uma próxima etapa">Chamados <small>em breve</small></span></li>
+            </ul>
+        </nav>
+
+        <p class="api-status" id="api-status" data-estado="verificando">
+            <span class="api-luz" aria-hidden="true"></span>
+            <span id="api-status-texto">Verificando API…</span>
+        </p>
+    </header>
+
+    <!-- Conteúdo de cada tela é desenhado pelo app.js -->
+    <main class="conteudo" id="conteudo" tabindex="-1" aria-live="polite"></main>
+</div>
+
+<!-- Confirmação de exclusão -->
+<dialog class="dialogo" id="dialogo-excluir" aria-labelledby="dialogo-titulo">
+    <form method="dialog">
+        <h2 id="dialogo-titulo">Excluir cliente?</h2>
+        <p id="dialogo-texto"></p>
+        <div class="acoes">
+            <button class="botao" value="cancelar">Cancelar</button>
+            <button class="botao perigo" value="confirmar">Excluir cliente</button>
+        </div>
+    </form>
+</dialog>
+
+<!-- Avisos rápidos (salvo, excluído, erro de conexão) -->
+<div class="avisos" id="avisos" role="status" aria-live="polite"></div>
+
+<script src="/js/app.js" th:src="@{/js/app.js}"></script>
+</body>
+</html>
